@@ -5,7 +5,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.Size;
 
 @Document
 public class Category {

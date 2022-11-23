@@ -85,7 +85,7 @@ public class RangeController {
 		System.out.println(category.toString());
 		
 		
-		Category cat = repository.save(category);
+		repository.save(category);
 		System.out.println("Product Saved Successfully");
 		
 		
