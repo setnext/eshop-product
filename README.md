@@ -1,3 +1,0 @@
-# eshop-product
-
-#Welcome
