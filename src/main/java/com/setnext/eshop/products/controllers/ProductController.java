@@ -2,15 +2,11 @@ package com.setnext.eshop.products.controllers;
 
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import com.setnext.eshop.products.entities.Product;
-import com.setnext.eshop.products.exceptions.ProductNotFoundException;
-import com.setnext.eshop.products.repository.ProductMongoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,6 +22,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.setnext.eshop.products.entities.Product;
+import com.setnext.eshop.products.exceptions.ProductNotFoundException;
+import com.setnext.eshop.products.repository.ProductRepository;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
@@ -34,7 +34,7 @@ import jakarta.validation.Valid;
 public class ProductController {
 	
 	@Autowired
-	private ProductMongoRepository repository;
+	private ProductRepository repository;
 	
 	
 //	@RequestMapping(method=RequestMethod.GET,path="/products")

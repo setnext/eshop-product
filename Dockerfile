@@ -6,7 +6,7 @@ COPY . /usr/src/app
 # Compile and package the application to an executable JAR
 RUN mvn package 
 
-# For Java 17, 
+# For Java 17,Slim Java Version 
 FROM openjdk:17-jdk-slim-buster
 
 ARG JAR_FILE=com.setnext.eshop.products.jar

@@ -1,7 +1,5 @@
 package com.setnext.eshop.products.entities;
 
-import java.util.Arrays;
-
 public class TechnicalAttributes {
 	
 	
