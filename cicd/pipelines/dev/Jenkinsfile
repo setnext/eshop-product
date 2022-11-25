@@ -11,15 +11,13 @@ pipeline {
       }
     }
     stage('Build and Test') {
-      steps {
-        agent {
+     agent {
       	docker {
         	image 'maven:3.5.0'
         }
       }
       steps {
       	sh 'mvn clean install'
-      }
       }
     }
     }
