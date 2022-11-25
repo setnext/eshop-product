@@ -10,10 +10,13 @@
 FROM openjdk:17-jdk-slim-buster
 
 ARG JAR_FILE=com.setnext.eshop.products.jar
-ARG WORKSPACE=$workspace
+ARG workspace
+
 WORKDIR /opt/app
 
+RUN echo "workspace passed is $workspace"
+
 # Copy the com.setnext.eshop.products.jar.
-COPY --from=maven ${WORKSPACE}/target/${JAR_FILE} /opt/app/
+COPY ${workspace}/target/${JAR_FILE} /opt/app/
 
 ENTRYPOINT ["java","-jar","com.setnext.eshop.products.jar"]
