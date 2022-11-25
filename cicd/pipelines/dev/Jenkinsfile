@@ -33,7 +33,7 @@ pipeline {
      stage('Docker Build') {
     	agent any
       steps {
-        sh 'docker buildx build --platform linux/amd64,linux/arm64 -t ${REPONAME}/${IMAGE} .'
+        sh 'docker build -t ${REPONAME}/${IMAGE} .'
       }
     }
     }
