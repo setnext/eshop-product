@@ -12,11 +12,16 @@ pipeline {
     stage('Checkout eshop project') {
       agent any
       steps {
-        git branch: 'main',
-          credentialsId: '04b7fff3-441b-491a-9c6d-1654a7fd0b77',
-          url: 'https://github.com/setnext/eshop-product.git'
+        def scmVars = checkout([$class: 'GitSCM',
+         branches: [[name: '*/main']],
+         userRemoteConfigs: [[url: 'https://github.com/setnext/eshop-product.git']]])
+//         git branch: 'main',
+//           credentialsId: '04b7fff3-441b-491a-9c6d-1654a7fd0b77',
+//           url: 'https://github.com/setnext/eshop-product.git'
 
         sh "ls -lat"
+        echo "scmVars.GIT_COMMIT"
+        echo "${scmVars.GIT_COMMIT}"
       }
     }
     stage('Build and Test') {
