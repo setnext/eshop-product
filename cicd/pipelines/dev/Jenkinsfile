@@ -24,6 +24,7 @@ pipeline {
         GIT_COMMIT_REV = scmVars.GIT_COMMIT.substring(0,7)
         VERSION = "${env.BUILD_ID}-${GIT_COMMIT_REV}"
         IMAGE="${NAME}:${VERSION}"
+          env["IMAGE"] = IMAGE
           
         
         echo "${IMAGE}"  
