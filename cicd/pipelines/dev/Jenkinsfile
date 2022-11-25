@@ -12,6 +12,7 @@ pipeline {
     stage('Checkout eshop project') {
       agent any
       steps {
+        script {
         def scmVars = checkout([$class: 'GitSCM',
          branches: [[name: '*/main']],
          userRemoteConfigs: [[url: 'https://github.com/setnext/eshop-product.git']]])
@@ -22,6 +23,7 @@ pipeline {
         sh "ls -lat"
         echo "scmVars.GIT_COMMIT"
         echo "${scmVars.GIT_COMMIT}"
+      }
       }
     }
     stage('Build and Test') {
