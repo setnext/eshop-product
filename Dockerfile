@@ -14,6 +14,8 @@ ARG workspace
 
 WORKDIR /opt/app
 
+RUN echo $(ls -1 $workspace)
+
 RUN echo "workspace passed is $workspace"
 
 # Copy the com.setnext.eshop.products.jar.
