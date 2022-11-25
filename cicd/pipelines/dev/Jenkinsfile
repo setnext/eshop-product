@@ -5,7 +5,7 @@ pipeline {
   environment { 
    NAME = "eshop-product"
    GIT_COMMIT_REV=''
-   VERSION = "${env.BUILD_ID}-${GIT_COMMIT}"
+   VERSION = "${env.BUILD_ID}-${GIT_COMMIT_REV}"
    IMAGE = "${NAME}:${VERSION}"
    REPONAME = "setnext"
   }
@@ -41,7 +41,7 @@ pipeline {
      stage('Docker Build') {
     	agent any
       steps {
-         sh 'docker build --progress=plain --no-cache -t ${REPONAME}/${env.BUILD_ID}:${GIT_COMMIT_REV} .'
+        sh 'docker build --progress=plain --no-cache -t ${REPONAME}/${IMAGE} .'
       }
     }
     }
