@@ -21,10 +21,7 @@ pipeline {
         sh "ls -lat"
         echo "scmVars.GIT_COMMIT"
         echo "${scmVars.GIT_COMMIT}"
-        a= ${scmVars.GIT_COMMIT}
-        GIT_COMMIT_REV = ${a:12:5}  
-        
-        
+        GIT_COMMIT_REV=$(echo $scmVars.GIT_COMMIT| cut -d'_' -f 5)
       }
       }
     }
