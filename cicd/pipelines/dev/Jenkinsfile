@@ -33,7 +33,7 @@ pipeline {
      stage('Docker Build') {
     	agent any
       steps {
-         sh 'docker build build --progress=plain --build-arg workspace=${WORKSPACE} -t ${REPONAME}/${IMAGE} .'
+         sh 'docker build --progress=plain --no-cache --build-arg workspace=${WORKSPACE} -t ${REPONAME}/${IMAGE} .'
       }
     }
     }
