@@ -45,7 +45,8 @@ pipeline {
     	agent any
       steps {
         script{
-          sh 'docker build --progress=plain --no-cache -t ${REPONAME}/${env.imagetag} .'
+          echo "${imagetag}"
+          sh 'docker build --progress=plain --no-cache -t ${REPONAME}/${imagetag} .'
         }
         }
     }
