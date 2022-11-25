@@ -21,7 +21,7 @@ pipeline {
         sh "ls -lat"
         echo "scmVars.GIT_COMMIT"
         echo "${scmVars.GIT_COMMIT}"
-        echo "${scmVars.GIT_COMMIT}| cut -d'_' -f 5"
+        sh "${scmVars.GIT_COMMIT}| cut -d'_' -f 5"
       }
       }
     }
