@@ -13,6 +13,6 @@ ARG JAR_FILE=com.setnext.eshop.products.jar
 WORKDIR /opt/app
 
 # Copy the com.setnext.eshop.products.jar.
-COPY --from=maven /usr/src/app/target/${JAR_FILE} /opt/app/
+COPY --from=maven ${env.WORKSPACE}/target/${JAR_FILE} /opt/app/
 
 ENTRYPOINT ["java","-jar","com.setnext.eshop.products.jar"]
