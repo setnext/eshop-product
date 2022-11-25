@@ -29,7 +29,7 @@ pipeline {
      stage('Docker Build') {
     	agent any
       steps {
-        sh 'docker build -t setnext/eshop-product:v2 .'
+        sh 'docker ps -a'
       }
     }
     }
