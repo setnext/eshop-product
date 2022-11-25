@@ -24,7 +24,7 @@ pipeline {
         echo "${scmVars.GIT_COMMIT}"
         GIT_COMMIT_REV = scmVars.GIT_COMMIT.substring(0,7)
         VERSION = "${env.BUILD_ID}-${GIT_COMMIT_REV}"
-        image_tag="${NAME}:${VERSION}"
+        env.imagetag="${NAME}:${VERSION}"
         
         
       }
@@ -45,7 +45,8 @@ pipeline {
     	agent any
       steps {
         script{
-        sh 'docker build --progress=plain --no-cache -t ${REPONAME}/${image_tag} .'
+          sh "cat ${env.imagetag}"
+          sh 'docker build --progress=plain --no-cache -t ${REPONAME}/${env.imagetag} .'
         }
         }
     }
