@@ -21,7 +21,7 @@ pipeline {
         sh "ls -lat"
         echo "scmVars.GIT_COMMIT"
         echo "${scmVars.GIT_COMMIT}"
-        GIT_COMMIT_REV = ${scmVars.GIT_COMMIT}.substring(0,7)
+        GIT_COMMIT_REV = scmVars.GIT_COMMIT.substring(0,7)
           echo "${GIT_COMMIT_REV}"  
         
       }
