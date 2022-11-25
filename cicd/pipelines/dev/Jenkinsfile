@@ -1,3 +1,4 @@
+def image_tag
 pipeline {
   
   agent none
@@ -23,11 +24,8 @@ pipeline {
         echo "${scmVars.GIT_COMMIT}"
         GIT_COMMIT_REV = scmVars.GIT_COMMIT.substring(0,7)
         VERSION = "${env.BUILD_ID}-${GIT_COMMIT_REV}"
-        IMAGE="${NAME}:${VERSION}"
-          env["IMAGE"] = IMAGE
-          
+        image_tag="${NAME}:${VERSION}"
         
-        echo "${IMAGE}"  
         
       }
       }
@@ -46,7 +44,7 @@ pipeline {
      stage('Docker Build') {
     	agent any
       steps {
-        sh 'docker build --progress=plain --no-cache -t ${REPONAME}/${IMAGE} .'
+        sh 'docker build --progress=plain --no-cache -t ${REPONAME}/${image_tag} .'
       }
     }
     }
