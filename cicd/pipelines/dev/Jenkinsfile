@@ -28,14 +28,12 @@ pipeline {
     }
       steps {
       	sh 'mvn -B -DskipTests clean package'
-        sh '${WORKSPACE}'
       }
     }
      stage('Docker Build') {
     	agent any
       steps {
-         sh 'docker ps'
-//         sh 'docker build -t ${REPONAME}/${IMAGE} .'
+         sh 'docker build --build-arg workspace=${WORKSPACE} -t ${REPONAME}/${IMAGE} .'
       }
     }
     }
