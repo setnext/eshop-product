@@ -44,8 +44,10 @@ pipeline {
      stage('Docker Build') {
     	agent any
       steps {
+        script{
         sh 'docker build --progress=plain --no-cache -t ${REPONAME}/${image_tag} .'
-      }
+        }
+        }
     }
     }
   }
