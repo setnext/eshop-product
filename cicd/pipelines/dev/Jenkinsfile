@@ -4,6 +4,7 @@ pipeline {
 
   environment { 
    NAME = "eshop-product"
+   GIT_COMMIT_REV=''
    VERSION = "${env.BUILD_ID}-${GIT_COMMIT}"
    IMAGE = "${NAME}:${VERSION}"
    REPONAME = "setnext"
@@ -15,14 +16,12 @@ pipeline {
         script {
         def scmVars = checkout([$class: 'GitSCM',
          branches: [[name: '*/main']],
-         userRemoteConfigs: [[url: 'https://github.com/setnext/eshop-product.git']]])
-//         git branch: 'main',
-//           credentialsId: '04b7fff3-441b-491a-9c6d-1654a7fd0b77',
-//           url: 'https://github.com/setnext/eshop-product.git'
-
+         userRemoteConfigs: [[credentialsId: 'my-username-password-id',
+                             url: 'https://github.com/setnext/eshop-product.git']]])
         sh "ls -lat"
         echo "scmVars.GIT_COMMIT"
         echo "${scmVars.GIT_COMMIT}"
+        GIT_COMMIT_REV= ${scmVars.GIT_REVISION,length=8} 
       }
       }
     }
@@ -40,7 +39,7 @@ pipeline {
      stage('Docker Build') {
     	agent any
       steps {
-         sh 'docker build --progress=plain --no-cache -t ${REPONAME}/${IMAGE} .'
+         sh 'docker build --progress=plain --no-cache -t ${REPONAME}/${env.BUILD_ID}:${GIT_COMMIT_REV} .'
       }
     }
     }
