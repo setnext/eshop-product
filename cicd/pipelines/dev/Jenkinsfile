@@ -2,12 +2,12 @@ pipeline {
   
   agent none
 
-//   environment { 
-//    NAME = "eshop-product"
-//    VERSION = "${env.BUILD_ID}-${env.GIT_COMMIT}"
-//    IMAGE = "${NAME}:${VERSION}"
-//    REPONAME = "setnext"
-//   }
+  environment { 
+   NAME = "eshop-product"
+   VERSION = "${env.BUILD_ID}-${env.GIT_COMMIT}"
+   IMAGE = "${NAME}:${VERSION}"
+   REPONAME = "setnext"
+  }
   stages {
     stage('Checkout eshop project') {
       agent any
