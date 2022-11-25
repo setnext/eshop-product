@@ -4,7 +4,7 @@ pipeline {
 
   environment { 
    NAME = "eshop-product"
-   VERSION = "${env.BUILD_ID}-${env.GIT_COMMIT}"
+   VERSION = "${env.BUILD_ID}-${GIT_COMMIT}"
    IMAGE = "${NAME}:${VERSION}"
    REPONAME = "setnext"
   }
@@ -28,12 +28,14 @@ pipeline {
     }
       steps {
       	sh 'mvn -B -DskipTests clean package'
+        sh '${WORKSPACE}'
       }
     }
      stage('Docker Build') {
     	agent any
       steps {
-        sh 'docker build -t ${REPONAME}/${IMAGE} .'
+         sh 'docker ps'
+//         sh 'docker build -t ${REPONAME}/${IMAGE} .'
       }
     }
     }
