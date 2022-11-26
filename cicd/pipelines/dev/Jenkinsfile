@@ -1,54 +1,55 @@
 def image_tag
 pipeline {
-  
+
   agent none
 
-  environment { 
-   NAME = "eshop-product"
-   GIT_COMMIT_REV=''
-   VERSION = "${env.BUILD_ID}-${GIT_COMMIT_REV}"
-   IMAGE = "${NAME}:${VERSION}"
-   REPONAME = "setnext"
+  environment {
+    NAME = "eshop-product"
+    GIT_COMMIT_REV = ''
+    VERSION = "${env.BUILD_ID}-${GIT_COMMIT_REV}"
+    IMAGE = "${NAME}:${VERSION}"
+    REPONAME = "setnext"
   }
   stages {
     stage('Checkout eshop project') {
       agent any
       steps {
         script {
-        def scmVars = checkout([$class: 'GitSCM',
-         branches: [[name: '*/main']],
-         userRemoteConfigs: [[credentialsId: 'my-username-password-id',
-                             url: 'https://github.com/setnext/eshop-product.git']]])
-        sh "ls -lat"
-        echo "scmVars.GIT_COMMIT"
-        echo "${scmVars.GIT_COMMIT}"
-        GIT_COMMIT_REV = scmVars.GIT_COMMIT.substring(0,7)
-        VERSION = "${env.BUILD_ID}-${GIT_COMMIT_REV}"
-        env.imagetag="${NAME}:${VERSION}"
-        
-        
-      }
+          def scmVars = checkout([$class: 'GitSCM',
+            branches: [
+              [name: '*/main']
+            ],
+            userRemoteConfigs: [
+              [credentialsId: 'my-username-password-id',
+                url: 'https://github.com/setnext/eshop-product.git'
+              ]
+            ]
+          ])
+          GIT_COMMIT_REV = scmVars.GIT_COMMIT.substring(0, 7)
+          VERSION = "${env.BUILD_ID}-${GIT_COMMIT_REV}"
+          env.IMAGETAG = "${NAME}:${VERSION}"
+
+        }
       }
     }
     stage('Build and Test') {
-       agent {
+      agent {
         docker {
-            image 'maven:3.8.1-openjdk-17' 
-            args '-v /Users/nbabu/.m2:/root/.m2' 
+          image 'maven:3.8.1-openjdk-17'
+          args '-v /Users/nbabu/.m2:/root/.m2'
         }
-    }
+      }
       steps {
-      	sh 'mvn -B -DskipTests clean package'
+        sh 'mvn clean package'
       }
     }
-     stage('Docker Build') {
-    	agent any
+    stage('Docker Build') {
+      agent any
       steps {
-        script{
-          echo "${imagetag}"
-          sh 'docker build --progress=plain --no-cache -t ${REPONAME}/${imagetag} .'
+        script {
+          sh 'docker build --progress=plain --no-cache -t ${REPONAME}/${IMAGETAG} .'
         }
-        }
-    }
+      }
     }
   }
+}
