@@ -8,6 +8,7 @@ pipeline {
     VERSION = "${env.BUILD_ID}-${GIT_COMMIT_REV}"
     IMAGE = "${NAME}:${VERSION}"
     REPONAME = "setnext"
+    JAR_FILE = "com.setnext.eshop.products.jar"
   }
   stages {
     stage('Checkout Eshop Product API Repo') {
@@ -46,7 +47,7 @@ pipeline {
       agent any
       steps {
         script {
-          sh 'docker build --progress=plain --no-cache -t ${REPONAME}/${IMAGETAG} .'
+          sh 'docker build --progress=plain --no-cache  --build-args JAR_FILE=${JAR_FILE}  -t ${REPONAME}/${IMAGETAG} .'
         }
       }
     }
