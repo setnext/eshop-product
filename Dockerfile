@@ -8,6 +8,6 @@ COPY ./target/${JAR_FILE} /opt/app/
 
 WORKDIR /opt/app
 
-RUN "ls /opt/app"
+RUN ls
 
 ENTRYPOINT ["java","-jar","${JAR_FILE_NAME}"]
