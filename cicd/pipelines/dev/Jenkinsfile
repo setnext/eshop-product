@@ -1,4 +1,3 @@
-def image_tag
 pipeline {
 
   agent none
@@ -11,7 +10,7 @@ pipeline {
     REPONAME = "setnext"
   }
   stages {
-    stage('Checkout eshop project') {
+    stage('Checkout Eshop Product API Repo') {
       agent any
       steps {
         script {
@@ -20,7 +19,7 @@ pipeline {
               [name: '*/main']
             ],
             userRemoteConfigs: [
-              [credentialsId: 'my-username-password-id',
+              [credentialsId: '04b7fff3-441b-491a-9c6d-1654a7fd0b77',
                 url: 'https://github.com/setnext/eshop-product.git'
               ]
             ]
