@@ -10,4 +10,4 @@ WORKDIR /opt/app
 
 RUN ls
 
-ENTRYPOINT ["java","-jar","${JAR_FILE_NAME}"]
+ENTRYPOINT ["java","-jar","com.setnext.eshop.products.jar"]
