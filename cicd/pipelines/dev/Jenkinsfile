@@ -51,5 +51,14 @@ pipeline {
         }
       }
     }
+    stage('Push Image to Hub') {
+    	agent any
+      steps {
+      	withCredentials([usernamePassword(credentialsId: 'setnextdockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+        	sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+          sh 'docker push ${REPONAME}/${IMAGETAG}'
+        }
+      }
+    }
   }
 }
