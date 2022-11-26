@@ -47,7 +47,7 @@ pipeline {
       agent any
       steps {
         script {
-          sh 'docker build --progress=plain --no-cache  --build-args JAR_FILE=${JAR_FILE}  -t ${REPONAME}/${IMAGETAG} .'
+          sh 'docker build --build-arg JAR_FILE=${JAR_FILE} --progress=plain --no-cache -t ${REPONAME}/${IMAGETAG} .'
         }
       }
     }
