@@ -6,4 +6,4 @@ COPY ./target/${JAR_FILE} /opt/app/
 
 WORKDIR /opt/app
 
-ENTRYPOINT ["java","-jar","$JAR_FILE"]
+ENTRYPOINT ["java","-jar","${JAR_FILE}"]
