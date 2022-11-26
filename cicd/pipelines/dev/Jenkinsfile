@@ -65,7 +65,7 @@ pipeline {
       steps {
         script {
           sh "sed -i '' 's#{image}#setnext/eshop-product:31-c59b409#' cicd/yaml/base/deployment.yaml"
-          sh "cat yaml/base/deployment.yaml"
+          sh "kustomize build cicd/yaml/overlays/dev/ | kubectl apply -f -"
         }
       }
     }
