@@ -1,11 +1,13 @@
 package com.setnext.eshop.products.entities;
 
 public class TechnicalAttributes {
-	
-	
+
+
 	private String key;
 	private String value;
-	
+
+	public TechnicalAttributes() {}
+
 	public TechnicalAttributes(String key, String value) {
 		super();
 		this.key = key;
@@ -32,13 +34,13 @@ public class TechnicalAttributes {
 	public void setValue(String value) {
 		this.value = value;
 	}
-	
-	
-	
-	
 
 
 
-	
+
+
+
+
+
 
 }

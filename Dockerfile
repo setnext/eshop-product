@@ -8,6 +8,4 @@ COPY ./target/${JAR_FILE} /opt/app/
 
 WORKDIR /opt/app
 
-RUN ls
-
-ENTRYPOINT ["java","-jar","com.setnext.eshop.products.jar"]
+ENTRYPOINT ["java","-jar","-Djdk.tls.client.protocols=TLSv1.2","com.setnext.eshop.products.jar"]

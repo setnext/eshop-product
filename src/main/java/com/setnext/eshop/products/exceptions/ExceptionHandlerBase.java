@@ -18,44 +18,48 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class ExceptionHandlerBase extends ResponseEntityExceptionHandler {
 	ArrayList<String> er;
-	
+
 	@ExceptionHandler(Exception.class)
 	public final ResponseEntity<ExceptionDetails> handleAllExceptions(Exception ex, WebRequest request) throws Exception {
-		ExceptionDetails errorDetails = new ExceptionDetails(LocalDateTime.now(), 
+		ExceptionDetails errorDetails = new ExceptionDetails(LocalDateTime.now(),
 				ex.getMessage(), request.getDescription(false));
-		
+
 		System.out.println(ex.getMessage());
-		
-		return new ResponseEntity<ExceptionDetails>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
-		
+
+		return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+
 	}
-	
+
 	@ExceptionHandler(ProductNotFoundException.class)
 	public final ResponseEntity<ExceptionDetails> handleUserNotFoundException(Exception ex, WebRequest request) throws Exception {
-		ExceptionDetails errorDetails = new ExceptionDetails(LocalDateTime.now(), 
+		ExceptionDetails errorDetails = new ExceptionDetails(LocalDateTime.now(),
 				ex.getMessage(), request.getDescription(false));
-		
-		return new ResponseEntity<ExceptionDetails>(errorDetails, HttpStatus.NOT_FOUND);
-		
+
+		return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+
 	}
+	
+
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(
 			MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
 
-//		ExceptionDetails errorDetails = new ExceptionDetails(LocalDateTime.now(), 
+//		ExceptionDetails errorDetails = new ExceptionDetails(LocalDateTime.now(),
 //				ex.getFieldError().getDefaultMessage(), request.getDescription(false));
-		er =new ArrayList<String>();
-//		
+		
+		System.out.println("field errors");
+		er =new ArrayList<>();
+//
 		ex.getFieldErrors().forEach((n) ->{
 			System.out.println(n.getDefaultMessage());
 			er.add(n.getDefaultMessage());
 		});
-		ExceptionDetails errorDetails = new ExceptionDetails(LocalDateTime.now(), 
+		ExceptionDetails errorDetails = new ExceptionDetails(LocalDateTime.now(),
 				er.toString(), request.getDescription(false));
-		
-		
-		
-		
+
+
+
+
 		return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
 	}
 

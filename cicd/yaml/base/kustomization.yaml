@@ -6,5 +6,5 @@ resources:
 - deployment.yaml
 configMapGenerator:
 - files:
-  - application.properties
+  - application.yml
   name: eshop-product-api-configmap

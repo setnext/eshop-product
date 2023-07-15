@@ -4,7 +4,7 @@ package com.setnext.eshop.products.exceptions;
 import java.time.LocalDateTime;
 
 public class ExceptionDetails {
-	
+
 	private LocalDateTime timestamp;
 	private String message;
 	private String details;
@@ -13,8 +13,9 @@ public class ExceptionDetails {
 		this.timestamp = localDateTime;
 		this.message = message;
 		this.details = details;
+		System.out.println(this.details);
 	}
-	
+
 	public LocalDateTime getTimestamp() {
 		return timestamp;
 	}
@@ -33,8 +34,8 @@ public class ExceptionDetails {
 	public void setDetails(String details) {
 		this.details = details;
 	}
-	
-	
-	
+
+
+
 
 }

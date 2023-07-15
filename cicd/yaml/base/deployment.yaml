@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: eshop-product-api
-          image: {image}
+          image: localhost:5001/setnext/eshop-product:v10
           ports:
             - containerPort: 8080
           volumeMounts:

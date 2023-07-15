@@ -1,11 +1,14 @@
 package com.setnext.eshop.products.entities;
 
 public class FeatureAttributes {
-	
-	
+
+
 	private String key;
 	private String value;
-	
+	public FeatureAttributes() {
+
+	}
+
 	public FeatureAttributes(String key, String value) {
 		super();
 		this.key = key;
@@ -32,13 +35,13 @@ public class FeatureAttributes {
 	public void setValue(String value) {
 		this.value = value;
 	}
-	
-	
-	
-	
 
 
 
-	
+
+
+
+
+
 
 }

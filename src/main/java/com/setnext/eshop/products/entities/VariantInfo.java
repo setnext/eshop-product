@@ -2,29 +2,35 @@ package com.setnext.eshop.products.entities;
 
 import java.util.Arrays;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class VariantInfo {
-	
-	
-	private String[] colors;
+
+	@JsonProperty("colors")
+	private Colors[] colors;
+	@JsonProperty("sizes")
 	private String[] sizes;
+	@JsonProperty("models")
 	private String[] models;
 
 
-	public VariantInfo(String[] colors, String[] sizes, String[] models) {
+	public VariantInfo() {}
+
+
+	public VariantInfo(Colors[] colors, String[] sizes, String[] models) {
 		super();
 		this.colors = colors;
 		this.sizes = sizes;
 		this.models = models;
 	}
 
-	
 
-	public String[] getColors() {
+	public Colors[] getColors() {
 		return colors;
 	}
 
 
-	public void setColors(String[] colors) {
+	public void setColors(Colors[] colors) {
 		this.colors = colors;
 	}
 
@@ -49,13 +55,6 @@ public class VariantInfo {
 	}
 
 
-
-
-
-
-
-
-
 	@Override
 	public String toString() {
 		return "VariantInfo [colors=" + Arrays.toString(colors) + ", sizes=" + Arrays.toString(sizes) + ", models="
@@ -63,5 +62,11 @@ public class VariantInfo {
 	}
 	
 	
+
+	
+
+
+
+
 
 }

@@ -6,16 +6,18 @@ import jakarta.validation.constraints.Size;
 
 
 public class PriceInfo {
-	
+
 	@JsonProperty("mrp_price")
 	@Size(min=2, message="Product Name should be more than 4 Letters")
 	private String mrpPrice;
-	
+
 	@JsonProperty("discount")
 	private String discount;
-	
-	@JsonProperty("sale_price")
+
+	@JsonProperty("sales_price")
 	private String salePrice;
+
+	public PriceInfo() {}
 
 	public PriceInfo(@Size(min = 2, message = "Product Name should be more than 4 Letters") String mrpPrice,
 			String discount, String salePrice) {
@@ -47,7 +49,7 @@ public class PriceInfo {
 	}
 
 
-	
+
 	public String getSalePrice() {
 		return salePrice;
 	}
@@ -55,6 +57,6 @@ public class PriceInfo {
 	public void setSalePrice(String salePrice) {
 		this.salePrice = salePrice;
 	}
-	
-	
+
+
 }

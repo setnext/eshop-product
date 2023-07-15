@@ -1,0 +1,32 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics
+spring:
+  data:
+    mongodb:
+      socketTimeout: '2000000'
+      database: eshop
+      uri: mongodb://setnext-user:setnext%40321@setnext-mongodb-svc.mongodb.svc.cluster.local/eshop
+  servlet:
+    multipart:
+      max-request-size: 2048KB
+      max-file-size: 2048KB
+logging:
+  level:
+    org:
+      springframework: error
+data:
+  initialization:
+    required: 'false'
+server:
+  port: '8080'
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+amazonProperties:
+  accessKey: AKIA3D6CCC5F2TGMJMO4
+  secretKey: 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
+  region: us-east-1
+  bucket: setnext-eshop
