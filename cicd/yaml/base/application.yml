@@ -26,7 +26,7 @@ springdoc:
   swagger-ui:
     path: /swagger-ui.html
 amazonProperties:
-  accessKey: AKIA3D6CCC5F2TGMJMO4
-  secretKey: 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
+  accessKey: *
+  secretKey: *
   region: us-east-1
   bucket: setnext-eshop
